@@ -23,29 +23,17 @@ static void my_application_activate(GApplication* application) {
   // Use a header bar when running in GNOME as this is the common style used
   // by applications and is the setup most users will be using (e.g. Ubuntu
   // desktop).
-  // If running on X and not using GNOME then just use a traditional title bar
-  // in case the window manager does more exotic layout, e.g. tiling.
-  // If running on Wayland assume the header bar will work (may need changing
-  // if future cases occur).
-  gboolean use_header_bar = TRUE;
+  // If running on X11, take into account the window manager's preference for
+  // decorations.
 #ifdef GDK_WINDOWING_X11
   GdkScreen* screen = gtk_window_get_screen(window);
   if (GDK_IS_X11_SCREEN(screen)) {
     const gchar* wm_name = gdk_x11_screen_get_window_manager_name(screen);
-    if (g_strcmp0(wm_name, "GNOME Shell") != 0) {
-      use_header_bar = FALSE;
+    if (g_strcmp0(wm_name, "GNOME Shell") == 0) {
+      gtk_window_set_titlebar(window, gtk_header_bar_new());
     }
   }
 #endif
-  if (use_header_bar) {
-    GtkHeaderBar* header_bar = GTK_HEADER_BAR(gtk_header_bar_new());
-    gtk_widget_show(GTK_WIDGET(header_bar));
-    gtk_header_bar_set_title(header_bar, "flutter_games");
-    gtk_header_bar_set_show_close_button(header_bar, TRUE);
-    gtk_window_set_titlebar(window, GTK_WIDGET(header_bar));
-  } else {
-    gtk_window_set_title(window, "Flutter Games");
-  }
 
   gtk_window_set_default_size(window, 1280, 720);
   gtk_widget_show(GTK_WIDGET(window));
@@ -53,13 +41,13 @@ static void my_application_activate(GApplication* application) {
   g_autoptr(FlDartProject) project = fl_dart_project_new();
   fl_dart_project_set_dart_entrypoint_arguments(project, self->dart_entrypoint_arguments);
 
-  FlView* view = fl_view_new(project);
-  gtk_widget_show(GTK_WIDGET(view));
-  gtk_container_add(GTK_CONTAINER(window), GTK_WIDGET(view));
+  FlView* fl_view = fl_view_new(project);
+  gtk_widget_show(GTK_WIDGET(fl_view));
+  gtk_container_add(GTK_CONTAINER(window), GTK_WIDGET(fl_view));
 
-  fl_register_plugins(FL_PLUGIN_REGISTRY(view));
+  fl_register_plugins(FL_PLUGIN_REGISTRY(fl_view));
 
-  gtk_widget_grab_focus(GTK_WIDGET(view));
+  gtk_widget_grab_focus(GTK_WIDGET(fl_view));
 }
 
 // Implements GApplication::local_command_line.
@@ -70,9 +58,9 @@ static gboolean my_application_local_command_line(GApplication* application, gch
 
   g_autoptr(GError) error = nullptr;
   if (!g_application_register(application, nullptr, &error)) {
-     g_warning("Failed to register: %s", error->message);
-     *exit_status = 1;
-     return TRUE;
+    g_warning("Failed to register: %s", error->message);
+    *exit_status = 1;
+    return TRUE;
   }
 
   g_application_activate(application);
@@ -81,7 +69,12 @@ static gboolean my_application_local_command_line(GApplication* application, gch
   return TRUE;
 }
 
-// Implements GObject::dispose.
+// Implements GApplication::startup.
+static void my_application_startup(GApplication* application) {
+  //G_APPLICATION_CLASS(my_application_parent_class)->startup(application);
+  gtk_init(0, nullptr);
+}
+
 static void my_application_dispose(GObject* object) {
   MyApplication* self = MY_APPLICATION(object);
   g_clear_pointer(&self->dart_entrypoint_arguments, g_strfreev);
@@ -91,6 +84,7 @@ static void my_application_dispose(GObject* object) {
 static void my_application_class_init(MyApplicationClass* klass) {
   G_APPLICATION_CLASS(klass)->activate = my_application_activate;
   G_APPLICATION_CLASS(klass)->local_command_line = my_application_local_command_line;
+  G_APPLICATION_CLASS(klass)->startup = my_application_startup;
   G_OBJECT_CLASS(klass)->dispose = my_application_dispose;
 }
 

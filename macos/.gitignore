@@ -1,7 +1,32 @@
-# Flutter-related
-**/Flutter/ephemeral/
+# OSX
+.DS_Store
+# Xcode
+!default.pbxuser
+!default.mode1v3
+!default.mode2v3
+!default.perspectivev3
+xcuserdata
+*.xccheckout
+*.moved-aside
+DerivedData
+*.hmap
+*.ipa
+*.xcuserstate
 **/Pods/
+**/.symlinks/
+profile
+xcuserdata
+**/.generated/
+Flutter/ephemeral/
+Flutter/App.framework
+Flutter/Flutter.framework
+Flutter/GeneratedPluginRegistrant.swift
+Flutter/flutter_export_environment.sh
+ServiceDefinitions.json
+Runner/GeneratedPluginRegistrant.swift
 
-# Xcode-related
-**/dgph
-**/xcuserdata/
+# Exceptions to above rules.
+!default.mode1v3
+!default.mode2v3
+!default.pbxuser
+!default.perspectivev3
