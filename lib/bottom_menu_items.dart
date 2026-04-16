@@ -20,8 +20,6 @@ String menuItemName(BottomMenu layoutType) {
       return 'My Stuff';
     case BottomMenu.more:
       return 'More';
-    default:
-      return '';
   }
 }
 

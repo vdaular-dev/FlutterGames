@@ -5,12 +5,12 @@ import 'package:flutter_games/controller/scroll_horizontal_screenshots.dart';
 import 'package:flutter_games/model/game.dart';
 
 class GameDetailsPage extends StatefulWidget {
-  GameDetailsPage(this.game, {Key? key}) : super(key: key);
+  const GameDetailsPage(this.game, {super.key});
 
   final Game game;
 
   @override
-  _GameDetailsPageState createState() => _GameDetailsPageState();
+  State<GameDetailsPage> createState() => _GameDetailsPageState();
 }
 
 class _GameDetailsPageState extends State<GameDetailsPage> {
@@ -29,6 +29,24 @@ class _GameDetailsPageState extends State<GameDetailsPage> {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () => {},
+                  style: ButtonStyle(
+                    padding:
+                        WidgetStateProperty.all(const EdgeInsets.all(12)),
+                    shape: WidgetStateProperty.all(RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(4),
+                    )),
+                    backgroundColor: WidgetStateProperty.all(Colors.green),
+                    overlayColor: WidgetStateProperty.resolveWith<Color?>(
+                      (Set<WidgetState> states) {
+                        if (states.contains(WidgetState.pressed)) {
+                          return Colors.green.shade400;
+                        }
+                        return null;
+                      },
+                    ),
+                    elevation: WidgetStateProperty.all(8),
+                    shadowColor: WidgetStateProperty.all(Colors.green.shade400),
+                  ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
@@ -43,28 +61,10 @@ class _GameDetailsPageState extends State<GameDetailsPage> {
                         "Rent",
                         style: Theme.of(context)
                             .textTheme
-                            .titleMedium! // Ensure this is updated according to the new text themes if needed
+                            .titleMedium!
                             .apply(color: Colors.white),
                       ),
                     ],
-                  ),
-                  style: ButtonStyle(
-                    padding:
-                        MaterialStateProperty.all(const EdgeInsets.all(12)),
-                    shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(4),
-                    )),
-                    backgroundColor: MaterialStateProperty.all(Colors.green),
-                    overlayColor: MaterialStateProperty.resolveWith<Color?>(
-                      (Set<MaterialState> states) {
-                        if (states.contains(MaterialState.pressed))
-                          return Colors.green.shade400; // For splashColor
-                        return null; // Defer to the widget's default.
-                      },
-                    ),
-                    elevation: MaterialStateProperty.all(8),
-                    shadowColor: MaterialStateProperty.all(
-                        Colors.green.shade400), // For highlightElevation
                   ),
                 ),
               ),
@@ -76,6 +76,30 @@ class _GameDetailsPageState extends State<GameDetailsPage> {
                 // height: double.infinity,
                 child: OutlinedButton(
                   onPressed: () => {},
+                  style: ButtonStyle(
+                    padding:
+                        WidgetStateProperty.all(const EdgeInsets.all(12)),
+                    shape: WidgetStateProperty.all(RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(4),
+                    )),
+                    side: WidgetStateProperty.all(
+                        const BorderSide(color: Colors.green, width: 4)),
+                    backgroundColor: WidgetStateProperty.all(Colors.white),
+                    overlayColor: WidgetStateProperty.resolveWith<Color?>(
+                      (Set<WidgetState> states) {
+                        if (states.contains(WidgetState.pressed)) {
+                          return Colors.green.shade200;
+                        }
+                        if (states.contains(WidgetState.hovered) ||
+                            states.contains(WidgetState.focused)) {
+                          return Colors.white70;
+                        }
+                        return null;
+                      },
+                    ),
+                    elevation: WidgetStateProperty.all(0),
+                    foregroundColor: WidgetStateProperty.all(Colors.green.shade400),
+                  ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
@@ -90,33 +114,10 @@ class _GameDetailsPageState extends State<GameDetailsPage> {
                         "Buy",
                         style: Theme.of(context)
                             .textTheme
-                            .titleMedium! // Make sure this is updated according to the new text themes if needed
+                            .titleMedium!
                             .apply(color: Colors.green),
                       ),
                     ],
-                  ),
-                  style: ButtonStyle(
-                    padding:
-                        MaterialStateProperty.all(const EdgeInsets.all(12)),
-                    shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(4),
-                    )),
-                    side: MaterialStateProperty.all(
-                        BorderSide(color: Colors.green, width: 4)),
-                    backgroundColor: MaterialStateProperty.all(Colors.white),
-                    overlayColor: MaterialStateProperty.resolveWith<Color?>(
-                      (Set<MaterialState> states) {
-                        if (states.contains(MaterialState.pressed))
-                          return Colors.green.shade200; // For splashColor
-                        if (states.contains(MaterialState.hovered) ||
-                            states.contains(MaterialState.focused))
-                          return Colors.white70; // For highlightColor
-                        return null; // Defer to the widget's default.
-                      },
-                    ),
-                    elevation: MaterialStateProperty.all(0),
-                    foregroundColor: MaterialStateProperty.all(
-                        Colors.green.shade400), // For highlightedBorderColor
                   ),
                 ),
               ),

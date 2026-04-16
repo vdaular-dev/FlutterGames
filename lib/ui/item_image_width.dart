@@ -6,8 +6,8 @@ class ImageFixedWidth extends StatelessWidget {
   final double imageRatio;
   final String placeholder;
 
-  ImageFixedWidth(this.image, this.width,
-      {this.imageRatio = 1.618, this.placeholder = ""});
+  const ImageFixedWidth(this.image, this.width,
+      {this.imageRatio = 1.618, this.placeholder = "", super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,11 +26,12 @@ class ImageFixedWidth extends StatelessWidget {
 }
 
 class ImageFixedWidthRounded extends StatelessWidget {
-  ImageFixedWidthRounded(this.image, this.width,
+  const ImageFixedWidthRounded(this.image, this.width,
       {this.imageRatio = 1.618,
       this.radius = 4,
       this.elevation = 8,
-      this.placeholder = ""});
+      this.placeholder = "",
+      super.key});
   final String image;
   final double width;
   final double imageRatio;

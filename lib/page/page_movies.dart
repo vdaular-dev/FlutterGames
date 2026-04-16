@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 class MoviesPage extends StatefulWidget {
-  MoviesPage({Key? key}) : super(key: key);
+  const MoviesPage({super.key});
 
   @override
-  _MoviesPageState createState() => _MoviesPageState();
+  State<MoviesPage> createState() => _MoviesPageState();
 }
 
 class _MoviesPageState extends State<MoviesPage> {

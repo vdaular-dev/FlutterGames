@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_games/model/game.dart';
 
 class GameBoxItem extends StatelessWidget {
-  static const IMAGE_RATIO = 1.50;
+  static const imageRatio = 1.50;
 
-  GameBoxItem(this.buildContext, this.game, {this.width = 120});
+  const GameBoxItem(this.buildContext, this.game, {this.width = 120, super.key});
   final BuildContext buildContext;
   final Game game;
   final double width;
 
   @override
   Widget build(BuildContext context) {
-    double height = IMAGE_RATIO * width;
+    double height = imageRatio * width;
 
     return Material(
       borderRadius: BorderRadius.circular(4),

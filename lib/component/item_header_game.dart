@@ -6,7 +6,7 @@ import 'package:flutter_games/ui/item_header_diagonal.dart';
 import 'package:flutter_games/ui/item_rating.dart';
 
 class GameDetailHeader extends StatelessWidget {
-  GameDetailHeader(this.game);
+  const GameDetailHeader(this.game, {super.key});
 
   final Game game;
 
@@ -60,85 +60,87 @@ class GameDetailHeader extends StatelessWidget {
                           children: [
                             OutlinedButton(
                               onPressed: () => {},
+                              style: ButtonStyle(
+                                padding: WidgetStateProperty.all(
+                                    const EdgeInsets.fromLTRB(6, 0, 12, 0)),
+                                shape: WidgetStateProperty.all(
+                                    RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(30),
+                                )),
+                                side: WidgetStateProperty.all(const BorderSide(
+                                    color: Colors.black54, width: 2)),
+                                backgroundColor:
+                                    WidgetStateProperty.all(Colors.white70),
+                                foregroundColor:
+                                    WidgetStateProperty.resolveWith<Color?>(
+                                  (Set<WidgetState> states) {
+                                    if (states.contains(WidgetState.pressed)) {
+                                      return Colors.black12;
+                                    }
+                                    return null;
+                                  },
+                                ),
+                                elevation: WidgetStateProperty.all(0),
+                              ),
                               child: Row(
                                 children: <Widget>[
                                   Icon(
                                     CupertinoIcons.play_circle,
                                     color: Theme.of(context)
                                         .textTheme
-                                        .displaySmall! // Update this according to the new text theme if needed
+                                        .displaySmall!
                                         .color,
                                   ),
-                                  Text("Trailer",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .displaySmall // Update this according to the new text theme if needed
-                                      ),
+                                  Text(
+                                    "Trailer",
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .displaySmall,
+                                  ),
                                 ],
                               ),
+                            ),
+                            const Padding(padding: EdgeInsets.only(left: 8)),
+                            OutlinedButton(
+                              onPressed: () => {},
                               style: ButtonStyle(
-                                padding: MaterialStateProperty.all(
+                                padding: WidgetStateProperty.all(
                                     const EdgeInsets.fromLTRB(6, 0, 12, 0)),
-                                shape: MaterialStateProperty.all(
+                                shape: WidgetStateProperty.all(
                                     RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(30),
                                 )),
-                                side: MaterialStateProperty.all(BorderSide(
+                                side: WidgetStateProperty.all(const BorderSide(
                                     color: Colors.black54, width: 2)),
                                 backgroundColor:
-                                    MaterialStateProperty.all(Colors.white70),
+                                    WidgetStateProperty.all(Colors.white70),
                                 foregroundColor:
-                                    MaterialStateProperty.resolveWith<Color?>(
-                                  (Set<MaterialState> states) {
-                                    if (states.contains(MaterialState.pressed))
-                                      return Colors
-                                          .black12; // Replace this color as needed for pressed state
-                                    return null; // Defer to the widget's default.
+                                    WidgetStateProperty.resolveWith<Color?>(
+                                  (Set<WidgetState> states) {
+                                    if (states.contains(WidgetState.pressed)) {
+                                      return Colors.black12;
+                                    }
+                                    return null;
                                   },
                                 ),
-                                elevation: MaterialStateProperty.all(0),
+                                elevation: WidgetStateProperty.all(0),
                               ),
-                            ),
-                            Padding(padding: EdgeInsets.only(left: 8)),
-                            OutlinedButton(
-                              onPressed: () => {},
                               child: Row(
                                 children: <Widget>[
                                   Icon(
                                     CupertinoIcons.plus,
                                     color: Theme.of(context)
                                         .textTheme
-                                        .displaySmall! // Update this according to the new text theme if needed
+                                        .displaySmall!
                                         .color,
                                   ),
-                                  Text("Wishlist",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .displaySmall // Update this according to the new text theme if needed
-                                      ),
+                                  Text(
+                                    "Wishlist",
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .displaySmall,
+                                  ),
                                 ],
-                              ),
-                              style: ButtonStyle(
-                                padding: MaterialStateProperty.all(
-                                    const EdgeInsets.fromLTRB(6, 0, 12, 0)),
-                                shape: MaterialStateProperty.all(
-                                    RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(30),
-                                )),
-                                side: MaterialStateProperty.all(BorderSide(
-                                    color: Colors.black54, width: 2)),
-                                backgroundColor:
-                                    MaterialStateProperty.all(Colors.white70),
-                                foregroundColor:
-                                    MaterialStateProperty.resolveWith<Color?>(
-                                  (Set<MaterialState> states) {
-                                    if (states.contains(MaterialState.pressed))
-                                      return Colors
-                                          .black12; // Replace this color as needed for pressed state
-                                    return null; // Defer to the widget's default.
-                                  },
-                                ),
-                                elevation: MaterialStateProperty.all(0),
                               ),
                             ),
                           ],

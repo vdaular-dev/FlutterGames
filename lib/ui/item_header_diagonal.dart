@@ -4,7 +4,7 @@ class DiagonallyCutColoredImage extends StatelessWidget {
   final FadeInImage image;
   final Color color;
 
-  DiagonallyCutColoredImage(this.image, {required this.color});
+  const DiagonallyCutColoredImage(this.image, {required this.color, super.key});
 
   @override
   Widget build(BuildContext context) {

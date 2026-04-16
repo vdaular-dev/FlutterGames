@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 class ComingSoonPage extends StatefulWidget {
-  ComingSoonPage(this.icon, {Key? key}) : super(key: key);
+  const ComingSoonPage(this.icon, {super.key});
 
   final IconData icon;
 
   @override
-  _ComingSoonPageState createState() => _ComingSoonPageState();
+  State<ComingSoonPage> createState() => _ComingSoonPageState();
 }
 
 class _ComingSoonPageState extends State<ComingSoonPage> {

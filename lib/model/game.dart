@@ -24,7 +24,7 @@ class Game {
         if (i == 0) {
           platformText = platforms[0];
         } else {
-          platformText = platformText + " | " + platforms[i];
+          platformText = "$platformText | ${platforms[i]}";
         }
       }
     } else if (platforms.length == 1) {

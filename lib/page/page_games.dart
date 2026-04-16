@@ -3,10 +3,10 @@ import 'package:flutter_games/controller/scroll_horizontal_game.dart';
 import 'package:flutter_games/model/repository.dart';
 
 class GamesPage extends StatefulWidget {
-  GamesPage({Key? key}) : super(key: key);
+  const GamesPage({super.key});
 
   @override
-  _GamesPageState createState() => _GamesPageState();
+  State<GamesPage> createState() => _GamesPageState();
 }
 
 class _GamesPageState extends State<GamesPage> {

@@ -4,7 +4,7 @@ import "package:flutter_games/page/page_game_details.dart";
 import "package:flutter_games/ui/item_game_box.dart";
 
 class GameContainerItem extends StatelessWidget {
-  GameContainerItem(this.buildContext, this.game);
+  const GameContainerItem(this.buildContext, this.game, {super.key});
   final BuildContext buildContext;
   final Game game;
 

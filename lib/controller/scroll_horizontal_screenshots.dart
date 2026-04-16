@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_games/component/item_screenshot_container.dart';
 
 class HorizontalScreenshotController extends StatelessWidget {
-  HorizontalScreenshotController(this.screenshots);
+  const HorizontalScreenshotController(this.screenshots, {super.key});
   final List<String> screenshots;
 
   @override

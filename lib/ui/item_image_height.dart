@@ -9,11 +9,12 @@ class ImageHeightItem extends StatelessWidget {
   final double radius;
   final double elevation;
 
-  ImageHeightItem(this.buildContext, this.image, this.height,
+  const ImageHeightItem(this.buildContext, this.image, this.height,
       {this.imageRatio = 1.618,
       this.onTap,
       this.radius = 4,
-      this.elevation = 8});
+      this.elevation = 8,
+      super.key});
 
   @override
   Widget build(BuildContext context) {

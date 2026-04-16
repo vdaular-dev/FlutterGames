@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_games/model/game.dart';
 
 class RatingInformation extends StatelessWidget {
-  RatingInformation(this.game);
+  const RatingInformation(this.game, {super.key});
 
   final Game game;
 
-  _buildRatingBar(ThemeData theme) {
+  Widget _buildRatingBar(ThemeData theme) {
     var stars = <Widget>[];
 
     for (var i = 1; i <= 5; i++) {

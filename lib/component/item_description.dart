@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class DescriptionText extends StatelessWidget {
-  DescriptionText(this.text);
+  const DescriptionText(this.text, {super.key});
 
   final String text;
 

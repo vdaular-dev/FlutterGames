@@ -5,8 +5,10 @@ import 'package:flutter_games/page/page_coming_soon.dart';
 import 'package:flutter_games/page/page_games.dart';
 
 class MainPage extends StatefulWidget {
+  const MainPage({super.key});
+
   @override
-  _MainPageState createState() => _MainPageState();
+  State<MainPage> createState() => _MainPageState();
 }
 
 class _MainPageState extends State<MainPage> {
@@ -128,10 +130,6 @@ class _MainPageState extends State<MainPage> {
       required IconData icon,
       required IconData iconSelected}) {
     return _layoutSelection == bottomMenu ? iconSelected : icon;
-  }
-
-  Color _setMenuItemColor({required BottomMenu bottomMenu}) {
-    return _layoutSelection == bottomMenu ? Colors.blueAccent : Colors.grey;
   }
 
   void _onSelectMenuItem(int index) {

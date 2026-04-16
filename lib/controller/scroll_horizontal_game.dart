@@ -3,7 +3,7 @@ import 'package:flutter_games/component/item_game_container.dart';
 import 'package:flutter_games/model/game.dart';
 
 class HorizontalGameController extends StatelessWidget {
-  HorizontalGameController(this.gameItems);
+  const HorizontalGameController(this.gameItems, {super.key});
   final List<Game> gameItems;
 
   @override
